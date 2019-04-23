@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		203958C4226D25060088A99E /* controls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203958C2226D25060088A99E /* controls.cpp */; };
-		203958C7226D25280088A99E /* pacMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203958C5226D25280088A99E /* pacMan.cpp */; };
-		203958CA226D67080088A99E /* enemies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 203958C8226D67080088A99E /* enemies.cpp */; };
-		203958CD226D671C0088A99E /* ll.h in Sources */ = {isa = PBXBuildFile; fileRef = 203958CB226D671C0088A99E /* ll.h */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 /* End PBXBuildFile section */
@@ -28,14 +24,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		203958C2226D25060088A99E /* controls.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = controls.cpp; sourceTree = "<group>"; };
-		203958C3226D25060088A99E /* controls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = controls.h; sourceTree = "<group>"; };
-		203958C5226D25280088A99E /* pacMan.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pacMan.cpp; sourceTree = "<group>"; };
-		203958C6226D25280088A99E /* pacMan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pacMan.h; sourceTree = "<group>"; };
-		203958C8226D67080088A99E /* enemies.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = enemies.cpp; sourceTree = "<group>"; };
-		203958C9226D67080088A99E /* enemies.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = enemies.hpp; sourceTree = "<group>"; };
-		203958CB226D671C0088A99E /* ll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ll.h; sourceTree = "<group>"; };
-		203958CC226D671C0088A99E /* ll.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ll.hpp; sourceTree = "<group>"; };
 		E42962AC2163EDD300A6A9E2 /* ofCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofCamera.cpp; path = ../../../libs/openFrameworks/3d/ofCamera.cpp; sourceTree = SOURCE_ROOT; };
 		E42962AD2163EDD300A6A9E2 /* ofMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofMesh.h; path = ../../../libs/openFrameworks/3d/ofMesh.h; sourceTree = SOURCE_ROOT; };
 		E42962AE2163EDD300A6A9E2 /* ofNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofNode.h; path = ../../../libs/openFrameworks/3d/ofNode.h; sourceTree = SOURCE_ROOT; };
@@ -545,14 +533,6 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				203958C2226D25060088A99E /* controls.cpp */,
-				203958C3226D25060088A99E /* controls.h */,
-				203958C5226D25280088A99E /* pacMan.cpp */,
-				203958C6226D25280088A99E /* pacMan.h */,
-				203958C8226D67080088A99E /* enemies.cpp */,
-				203958C9226D67080088A99E /* enemies.hpp */,
-				203958CB226D671C0088A99E /* ll.h */,
-				203958CC226D671C0088A99E /* ll.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -656,11 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				203958CD226D671C0088A99E /* ll.h in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				203958CA226D67080088A99E /* enemies.cpp in Sources */,
-				203958C4226D25060088A99E /* controls.cpp in Sources */,
-				203958C7226D25280088A99E /* pacMan.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
