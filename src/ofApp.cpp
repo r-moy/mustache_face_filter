@@ -12,6 +12,10 @@ void ofApp::setup(){
     vidGrabber.setVerbose(true);
     vidGrabber.setup(camWidth,camHeight);
     
+    output = new unsigned char [camWidth*camHeight];
+    
+    videoTexture.allocate(camWidth,camHeight,GL_RGB);
+    
     ofEnableAlphaBlending();
 }
 
@@ -19,41 +23,39 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     vidGrabber.update();
+    
+    ofPixelsRef pixels = vidGrabber.getPixels();
+    
+    int filtercase = 1;
+    
+    switch(filtercase) {
+            
+        case 1:
+            for (int i = 0; i <(camWidth*camHeight); i++) {
+                output[i] = 255 - pixels[i];
+            }
+            videoTexture.loadData(output,camWidth,camHeight,GL_RGB);
+            break;
+            
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    // change background video alpha value based on the cursor's x-position
+    // change background video alpha value based on the cursor's position
     float videoAlphaValue = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
     
-    // set a white fill color with the alpha generated above
-    ofSetColor(255,255,255,videoAlphaValue);
     
     // draw the raw video frame with the alpha value generated above
     vidGrabber.draw(0,0);
     
     ofPixelsRef pixelsRef = vidGrabber.getPixels();
-    
-    ofSetHexColor(0xffffff);
-    
-    for (int i = 0; i < camWidth; i+= 7){
-        for (int j = 0; j < camHeight; j+= 9){
-            // get the pixel and its lightness (lightness is the average of its RGB values)
-            float lightness = pixelsRef.getColor(i,j).getLightness();
-        }
-    }
-    
 }
 
 
 //--------------------------------------------------------------
 void ofApp::keyPressed  (int key){
-    
-    if (key == 's' || key == 'S'){
-        vidGrabber.videoSettings();
-    }
-    
     
 }
 

@@ -23,6 +23,8 @@ public:
     void gotMessage(ofMessage msg);
     
     ofVideoGrabber vidGrabber;
+    ofTexture videoTexture;
+    unsigned char * output;
     int camWidth;
     int camHeight;
     
