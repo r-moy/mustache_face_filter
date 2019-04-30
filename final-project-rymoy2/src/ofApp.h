@@ -26,13 +26,13 @@ public:
     ofVideoGrabber vidGrabber;
     
     ofTexture videoTexture;
-    unsigned char * output;
+    unsigned char * videoData;
     int camWidth;
     int camHeight;
     
     ofxCv::ObjectFinder finder;
-    ofImage sunglasses;
     ofImage mustache;
+    ofImage screenshot;
     
     int filter;
 };

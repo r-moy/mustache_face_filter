@@ -12,8 +12,6 @@ void ofApp::setup(){
     finder.setPreset(ObjectFinder::Fast);
     finder.getTracker().setSmoothingRate(.3);
     mustache.load("mustache2.png");
-    ofEnableAlphaBlending();
-    /////////////////////////////////
     ofBackground(0,0,0);
     
     // the size that the video is grabbed at
@@ -23,7 +21,9 @@ void ofApp::setup(){
     vidGrabber.setVerbose(true);
     vidGrabber.setup(camWidth,camHeight);
     
-    output = new unsigned char [camWidth*camHeight];
+    vidGrabber.initGrabber(camWidth, camHeight);
+    
+    videoData = new unsigned char [camWidth*camHeight*3];
     
     videoTexture.allocate(camWidth,camHeight,GL_RGB);
     
@@ -39,31 +39,29 @@ void ofApp::update(){
         finder.update(vidGrabber);
     }
     
-    ofPixelsRef pixels = vidGrabber.getPixels();
+//    int filtercase = filter;
     
-    int filtercase = filter;
-    
-    switch(filtercase) {
-            
-        case 1:
-            for (int i = 0; i <(camWidth*camHeight); i++) {
-                output[i] = 255 - pixels[i];
-            }
-            videoTexture.loadData(output,camWidth,camHeight,GL_RGB);
-            break;
-            
-    }
+//    switch(filtercase) {
+//
+//        case '1':
+//            if (vidGrabber.isFrameNew()) {
+//                unsigned char* pixels = vidGrabber.getPixels().getData();
+//                int bytes_to_examine = camHeight * camWidth * 3;
+//
+//                for (int i = 0; i < bytes_to_examine; i++) {
+//                    videoData[i] = 255 - pixels[i];
+//                }
+//
+//                videoTexture.loadData(videoData, camWidth, camHeight, GL_RGB);
+//                videoTexture.draw(0,0);
+//            }
+//            break;
+//    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    // change background video alpha value based on the cursor's position
-    //float videoAlphaValue = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
-    
-    //ofSetColor(255,255,255,videoAlphaValue);
-    
-    // draw the raw video frame with the alpha value generated above
     vidGrabber.draw(0,0);
     
     for(int i = 0; i < finder.size(); i++) {
@@ -80,15 +78,16 @@ void ofApp::draw(){
         ofPopMatrix();
     }
     
-    //ofPixelsRef pixelsRef = vidGrabber.getPixels();
-    
-    //ofSetHexColor(0xffffff);
 }
 
 
 //--------------------------------------------------------------
 void ofApp::keyPressed  (int key){
-    filter = key;
+    if(key == 'x'){
+        screenshot.grabScreen(0, 0 , ofGetWidth(), ofGetHeight());
+        screenshot.save("screenshot.png");
+    }
+
 }
 
 //--------------------------------------------------------------
