@@ -32,6 +32,7 @@ public:
     
     ofxCv::ObjectFinder finder;
     ofImage sunglasses;
+    ofImage mustache;
     
     int filter;
 };

@@ -11,7 +11,7 @@ void ofApp::setup(){
     finder.setup("haarcascade_frontalface_default.xml");
     finder.setPreset(ObjectFinder::Fast);
     finder.getTracker().setSmoothingRate(.3);
-    sunglasses.load("sunglasses.png");
+    mustache.load("mustache2.png");
     ofEnableAlphaBlending();
     /////////////////////////////////
     ofBackground(0,0,0);
@@ -59,32 +59,30 @@ void ofApp::update(){
 void ofApp::draw(){
     
     // change background video alpha value based on the cursor's position
-    float videoAlphaValue = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
+    //float videoAlphaValue = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
     
-    ofSetColor(255,255,255,videoAlphaValue);
+    //ofSetColor(255,255,255,videoAlphaValue);
     
     // draw the raw video frame with the alpha value generated above
     vidGrabber.draw(0,0);
     
     for(int i = 0; i < finder.size(); i++) {
         ofRectangle object = finder.getObjectSmoothed(i);
-        sunglasses.setAnchorPercent(.5, .5);
-        float scaleAmount = .85 * object.width / sunglasses.getWidth();
+        mustache.setAnchorPercent(.5, .5);
+        float scaleAmount = .85 * object.width / mustache.getWidth();
         ofPushMatrix();
-        ofTranslate(object.x + object.width / 2., object.y + object.height * .42);
+        ofTranslate(object.x + object.width / 2., object.y + object.height * .70);  //.42
         ofScale(scaleAmount, scaleAmount);
-        sunglasses.draw(0, 0);
+        mustache.draw(0, 0);
         ofPopMatrix();
         ofPushMatrix();
         ofTranslate(object.getPosition());
-        ofDrawBitmapStringHighlight(ofToString(finder.getLabel(i)), 0, 0);
-        ofDrawLine(ofVec2f(), toOf(finder.getVelocity(i)) * 10);
         ofPopMatrix();
     }
     
-    ofPixelsRef pixelsRef = vidGrabber.getPixels();
+    //ofPixelsRef pixelsRef = vidGrabber.getPixels();
     
-    ofSetHexColor(0xffffff);
+    //ofSetHexColor(0xffffff);
 }
 
 
