@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxCv.h"
 
 class ofApp : public ofBaseApp{
     
@@ -23,9 +24,14 @@ public:
     void gotMessage(ofMessage msg);
     
     ofVideoGrabber vidGrabber;
+    
     ofTexture videoTexture;
     unsigned char * output;
     int camWidth;
     int camHeight;
     
+    ofxCv::ObjectFinder finder;
+    ofImage sunglasses;
+    
+    int filter;
 };

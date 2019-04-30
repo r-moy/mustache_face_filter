@@ -1,12 +1,23 @@
 #include "ofApp.h"
+using namespace ofxCv;
+using namespace cv;
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    ofSetVerticalSync(true);
+    ofSetFrameRate(120);
+    finder.setup("haarcascade_frontalface_default.xml");
+    finder.setPreset(ObjectFinder::Fast);
+    finder.getTracker().setSmoothingRate(.3);
+    sunglasses.load("sunglasses.png");
+    ofEnableAlphaBlending();
+    /////////////////////////////////
     ofBackground(0,0,0);
     
     // the size that the video is grabbed at
-    camWidth = 640;
+    camWidth = 722;
     camHeight = 480;
     
     vidGrabber.setVerbose(true);
@@ -24,9 +35,13 @@ void ofApp::setup(){
 void ofApp::update(){
     vidGrabber.update();
     
+    if(vidGrabber.isFrameNew()) {
+        finder.update(vidGrabber);
+    }
+    
     ofPixelsRef pixels = vidGrabber.getPixels();
     
-    int filtercase = 1;
+    int filtercase = filter;
     
     switch(filtercase) {
             
@@ -51,6 +66,22 @@ void ofApp::draw(){
     // draw the raw video frame with the alpha value generated above
     vidGrabber.draw(0,0);
     
+    for(int i = 0; i < finder.size(); i++) {
+        ofRectangle object = finder.getObjectSmoothed(i);
+        sunglasses.setAnchorPercent(.5, .5);
+        float scaleAmount = .85 * object.width / sunglasses.getWidth();
+        ofPushMatrix();
+        ofTranslate(object.x + object.width / 2., object.y + object.height * .42);
+        ofScale(scaleAmount, scaleAmount);
+        sunglasses.draw(0, 0);
+        ofPopMatrix();
+        ofPushMatrix();
+        ofTranslate(object.getPosition());
+        ofDrawBitmapStringHighlight(ofToString(finder.getLabel(i)), 0, 0);
+        ofDrawLine(ofVec2f(), toOf(finder.getVelocity(i)) * 10);
+        ofPopMatrix();
+    }
+    
     ofPixelsRef pixelsRef = vidGrabber.getPixels();
     
     ofSetHexColor(0xffffff);
@@ -59,7 +90,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed  (int key){
-    
+    filter = key;
 }
 
 //--------------------------------------------------------------
