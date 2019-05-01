@@ -13,8 +13,4 @@ int main( ){
     
 }
 
-//how to commit using terminal
-//cd /Users/raymondmoy/Desktop/of_v0.10.1_osx_release/apps/myApps/final-project-rymoy2
-//git add .
-//git commit -m "my message hello"
-//git push origin master
+

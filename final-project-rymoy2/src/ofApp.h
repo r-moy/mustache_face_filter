@@ -25,8 +25,6 @@ public:
     
     ofVideoGrabber vidGrabber;
     
-    ofTexture videoTexture;
-    unsigned char * videoData;
     int camWidth;
     int camHeight;
     
@@ -34,5 +32,4 @@ public:
     ofImage mustache;
     ofImage screenshot;
     
-    int filter;
 };

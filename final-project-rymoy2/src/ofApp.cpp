@@ -23,11 +23,6 @@ void ofApp::setup(){
     
     vidGrabber.initGrabber(camWidth, camHeight);
     
-    videoData = new unsigned char [camWidth*camHeight*3];
-    
-    videoTexture.allocate(camWidth,camHeight,GL_RGB);
-    
-    ofEnableAlphaBlending();
 }
 
 
@@ -38,25 +33,6 @@ void ofApp::update(){
     if(vidGrabber.isFrameNew()) {
         finder.update(vidGrabber);
     }
-    
-//    int filtercase = filter;
-    
-//    switch(filtercase) {
-//
-//        case '1':
-//            if (vidGrabber.isFrameNew()) {
-//                unsigned char* pixels = vidGrabber.getPixels().getData();
-//                int bytes_to_examine = camHeight * camWidth * 3;
-//
-//                for (int i = 0; i < bytes_to_examine; i++) {
-//                    videoData[i] = 255 - pixels[i];
-//                }
-//
-//                videoTexture.loadData(videoData, camWidth, camHeight, GL_RGB);
-//                videoTexture.draw(0,0);
-//            }
-//            break;
-//    }
 }
 
 //--------------------------------------------------------------
@@ -65,12 +41,19 @@ void ofApp::draw(){
     vidGrabber.draw(0,0);
     
     for(int i = 0; i < finder.size(); i++) {
+        // returns smoothed rectangle
         ofRectangle object = finder.getObjectSmoothed(i);
+        //sets the anchor point the image is drawn around
         mustache.setAnchorPercent(.5, .5);
+        // amount I want the object to be scaled to
         float scaleAmount = .85 * object.width / mustache.getWidth();
+        
         ofPushMatrix();
-        ofTranslate(object.x + object.width / 2., object.y + object.height * .70);  //.42
+        
+        ofTranslate(object.x + object.width / 2., object.y + object.height * .70);
+        
         ofScale(scaleAmount, scaleAmount);
+        
         mustache.draw(0, 0);
         ofPopMatrix();
         ofPushMatrix();
@@ -83,6 +66,8 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed  (int key){
+    
+    //grabs a png of the window using the height and width of the popup window
     if(key == 'x'){
         screenshot.grabScreen(0, 0 , ofGetWidth(), ofGetHeight());
         screenshot.save("screenshot.png");
