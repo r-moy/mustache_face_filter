@@ -31,13 +31,17 @@ As I began working on my facial filter, I realized it was much more difficult th
 - [x] Further research into face filter development in cpp.
 - [ ] Attempt to use dlib
 
-### -Week 3-
+### -Week 3/4-
 ----------------
 -Summary-
 
-With the final week I achieved the intended goal of my project. Through thorough research into face tracking within OpenFrameworks, I discovered the library OfxCv. This library allowed me to easily track a face in real time on the webcam using a finder object that it includes. However, I was unable to successfully implement my planned extension of adding different color filters for the webcam. This proved too difficult, as I could not completely figure out how to link the camera pixels with a key pressed. I did figure out how to implement screenshots though, and have them be saved to the data folder within the bin.
+Within the final weeks I achieved the intended goal of my project. Through thorough research into face tracking within OpenFrameworks, I discovered the library OfxCv. This library allowed me to easily track a face in real time on the webcam using a finder object that it includes. However, I was unable to successfully implement my planned extension of adding different color filters for the webcam. This proved too difficult, as I could not completely figure out how to link the camera pixels with a key pressed. I did figure out how to implement screenshots though, and have them be saved to the data folder within the bin.
 
 -Progress made this week-
 - got the camera to track a face and place the mustache on it
 - implemented screenshotting
 - implemented libraries correctly
+
+-Additional Comments-
+
+I was not sure how to completely develop testing for my project, as it does not implement many testable features. However, if I did manage to figure out the tests, they would probably look something like me placing the mustache on an image and saving it, and checking if it was correct based on where the face tracker would've put it.
